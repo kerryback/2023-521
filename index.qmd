@@ -12,9 +12,14 @@ J. Howard Creekmore Professor of Finance and Professor of Economics<br>
 
 [Asset Pricing and Portfolio Choice Theory](https://www.amazon.com/Portfolio-Financial-Management-Association-Synthesis/product-reviews/0190241144/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews), Oxford University Press, 2nd Edition, 2017.
 
+#### Course Calendar
+
+This is a cross-listed course between the Jones School and the School of Social Sciences.  We will follow the School of Social Sciences academic calendar.  We meet TTh from 2:30-3:45 commencing January 10.  The last class day is April 20.  There will be no class on February 9 (spring recess) or on March 14 and March 16 (spring break).
+The midterm exam will be February 28.  The final exam will be during exam week.
+
 #### Course Description
 
-This course is an introduction to asset pricing and portfolio choice theory with a little on empirics. This is the foundation for the ‘investments’ branch of finance. Understanding
+This course is an introduction to asset pricing and portfolio choice theory. This is the foundation for the ‘investments’ branch of finance. Understanding
 how assets are priced is also important for issuing entities, like corporations, so asset
 pricing is also part of the foundation for corporate finance. Of course, prices are determined by supply and demand. We take supply (a topic in corporate finance) as given in
 this course and study demand (portfolio choice).
