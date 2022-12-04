@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - slides.qmd
+           
+website:
+  title: ""
+  search: false  
+  navbar:
+    search: false
+    title: BUSI 520/ECON 505
+    right:
+
+      - text: Slide Decks
+        file: slides.qmd
+
+      - text: Home
+        file: index.qmd
+        
+theme: cosmo
+scss: styles.css
+    
+   
+
+
+

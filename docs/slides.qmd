@@ -1,0 +1,30 @@
+[Utility and risk aversion]
+
+[Portfolio choice]
+
+[Stochastic discount factors]
+
+[Mean-variance analysis]
+
+[Factor models]
+[General equilibrium]
+
+[Representative investors and the equity premium puzzle]
+
+[Rational expectations and informational efficiency]
+
+[Dynamic models]
+
+[Brownian motion and stochastic calculus]
+
+[SDFs in continuous-time models]
+
+[Dynamic programming in continuous time]
+
+[Portfolio choice and ICAPM]
+
+[Options]
+
+[Real options]
+
+
