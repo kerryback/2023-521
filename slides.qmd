@@ -1,33 +1,29 @@
-## Slide Decks (TBD)
+## Schedule by Week
 
-[Utility and risk aversion]
+[1. Risk aversion and portfolio choice]()
 
-[Portfolio choice]
+[2. Dynamic programming under uncertainty]()
 
-[Stochastic discount factors]
+[3. Dynamic portfolio choice]()
 
-[Mean-variance analysis]
+[4. Stochastic discount factors]()
 
-[Factor models]
+[5. Complete markets and representative investors]()
 
-[General equilibrium]
+[6. CAPMs]()
 
-[Representative investors and the equity premium puzzle]
+[7. Brownian motion and stochastic calculus]()
 
-[Rational expectations and informational efficiency]
+[8. Dynamic programming in continuous time]()
 
-[Dynamic models]
+[9. Portfolio choice, CCAPM, and ICAPM]()
 
-[Brownian motion and stochastic calculus]
+[10. SDFs in continuous time]()
 
-[SDFs in continuous-time models]
+[11. Options]()
 
-[Dynamic programming in continuous time]
+[12. Real options]()
 
-[Portfolio choice and ICAPM]
-
-[Options]
-
-[Real options]
+[13. Rational expectations and informational efficiency]()
 
 
