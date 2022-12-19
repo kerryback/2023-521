@@ -10,7 +10,7 @@ website:
   search: false  
   navbar:
     search: false
-    title: BUSI 520/ECON 505
+    title: BUSI 521/ECON 505
     right:
 
       - text: Slide Decks
