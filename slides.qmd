@@ -1,29 +1,7 @@
-## Schedule by Week
+## Slide Decks
 
-[1. Brownian motion and stochastic calculus](1-BrownianMotion.html)
+[1. Brownian motion and stochastic calculus](1-brownian-motion.html)
 
-[2. Dynamic programming under uncertainty in continuous time]()
 
-[3. Dynamic portfolio choice]()
-
-[4. Stochastic discount factors]()
-
-[5. Complete markets and representative investors]()
-
-[6. CAPMs]()
-
-[7. Brownian motion and stochastic calculus]()
-
-[8. Dynamic programming in continuous time]()
-
-[9. Portfolio choice, CCAPM, and ICAPM]()
-
-[10. SDFs in continuous time]()
-
-[11. Options]()
-
-[12. Real options]()
-
-[13. Rational expectations and informational efficiency]()
 
 
