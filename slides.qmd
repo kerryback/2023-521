@@ -1,8 +1,8 @@
 ## Schedule by Week
 
-[1. Risk aversion and portfolio choice]()
+[1. Brownian motion and stochastic calculus](1-BrownianMotion.html)
 
-[2. Dynamic programming under uncertainty]()
+[2. Dynamic programming under uncertainty in continuous time]()
 
 [3. Dynamic portfolio choice]()
 
