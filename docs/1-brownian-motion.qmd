@@ -1,0 +1,541 @@
+---
+title:  "Brownian Motion and Stochastic Calculus"
+author: <br><br><br><br><span style="font-family:perpetua; font-variant:small-caps; color:#606060;">Kerry Back</span><br><br><img src="RiceBusiness-transparent-logo-sm.png"  height=80>
+execute:
+  echo: false
+  jupyter: python3
+format: 
+  revealjs:
+    highlight-style: monokai
+    code-fold: true
+    code-copy: hover
+    scrollable: true
+    slide-number: true
+    preview-links: true
+    self-contained: true
+    controls: true
+    transition: fade
+    theme: [solarized, 2023.scss]
+    incremental: true
+---
+
+# Preliminaries {background-color="#657b83" color="#fdf6e3"}
+
+##
+
+- A stochastic process $X$ in continuous time is a collection of random variables  $X_t$ for $t\in [0,\infty)$ or for $t\in[0,T]$. 
+- We can also view it as a random variable with values in the space of functions of time.
+- The function of time is called a path of the stochastic process.
+- A stochastic process has random paths. 
+
+## Information
+
+- Information increases over time.  
+- We work with stochastic processes and information such that $X_t$ is known at time $t$ (or before).
+- We say that $X$ is adapted to the information.  We could equivalently say that our information includes the history of $X$.
+
+## Iterated Expectations
+
+- Denote expectation conditional on date $t$ information by $\mathsf{E}_t$.
+- Denote unconditional expectation (i.e., conditional on date 0 information) by $\mathsf{E}$.
+- Law of iterated expectations:  for $t<u$, and any random variable $x$,
+
+. . .
+
+$$\mathsf{E}_t[x] = \mathsf{E}_t\big[\mathsf{E}_u[x]\big]$$
+
+
+## Riemann-Stieltjes Integral
+
+- Consider a nonrandom function $f$ and an increasing nonrandom function $G$.
+- We can define the integral $\int_0^t f(s)\,\mathrm{d}G(s)$ as a limit of sums
+
+. . .
+
+$$\sum_{i=1}^n f(z_i)[G(s_i)-G(s_{i-1})]$$
+
+- for $s_{i-1} < z_i < s_i$.
+
+# Definition of Brownian Motion{background-color="#657b83" color="#fdf6e3"}
+
+## IID Normal Increments
+
+- A Brownian motion is a continuous-time stochastic process $B$ with the property that, 
+  - for any dates $t<u$, 
+  - and conditional on information at date $t$, 
+  - the change $B_u-B_t$ is normally distributed with mean zero and variance $u-t$. 
+- So, $B_u$ is conditionally normally distributed with mean $B_t$ and variance $u-t$.  
+
+##
+
+- The starting value of a Brownian motion is typically not important, so we can and will take $B_0=0$.
+
+# Information  {background-color="#657b83" color="#fdf6e3"}
+
+## 
+
+- A Brownian motion with respect to some information might not be a Brownian motion with respect to other information.  
+- For example, a stochastic process could be a Brownian motion for some investors but not for better informed investors, who might be able to predict the increments to some degree.  
+- It is part of the definition of a Brownian motion that the past values $B_s$ for $s \leq t$ are part of the information  at each date $t$.
+
+# Nondifferentiable Paths{background-color="#657b83" color="#fdf6e3"}
+
+## 
+
+- The paths of a Brownian motion make many small up-and-down movements with extremely high frequency, so that the limits $\lim_{s\rightarrow t} (B_t-B_s)/(t-s)$ defining derivatives do not exist.  
+- With probability 1, a path of a Brownian motion is
+  - continuous
+  - almost everywhere nondifferentiable
+
+##
+
+- The name ``Brownian motion'' stems from the  observations by the botanist Robert Brown of the erratic behavior of particles suspended in a fluid.  
+
+# Information  {background-color="#657b83" color="#fdf6e3"}
+
+##
+
+- Let $B$ be a Brownian motion.  Consider a  discrete partition
+$$s=t_0 < t_1 < t_2 < \cdots < t_N=u$$
+of a time interval $[s,u]$.
+- Consider the sum of squared changes
+$$\sum_{i=1}^N (B_{t_i}-B_{t_{i-1}})^2$$
+in some state of the world.
+
+
+##
+
+- If we consider finer partitions (i.e., increase $N$) with the maximum length $t_i-t_{i-1}$ of the time intervals  going to zero as $N \rightarrow \infty$, the limit of the sum is called the quadratic variation of the path of $B$.  
+- The quadratic variation of the path of a Brownian motion over any interval $[s,u]$ is equal to $u-s$ with probability 1.
+
+
+## Quadratic Variation of Usual Functions of Time
+
+- The quadratic variation of any continuously differentiable function is zero.  
+- Consider, for example, a
+linear function of time: $at$ for some constant $a$. 
+- Take $t_i-t_{i-1} = \Delta t = (u-s)/N$ for each $i$.
+
+## 
+ 
+
+- The sum of 
+squared changes over any interval $[s,u]$ is
+
+. . .
+
+$$\sum_{i=1}^N  (a\Delta t)^2 = Na^2 \left(\frac{u-s}{N}\right)^2$$
+
+. . .
+
+$$= \frac{a^2(u-s)^2}{N} \rightarrow 0$$
+as $N \rightarrow \infty$.  
+
+
+# Total Variation  {background-color="#657b83" color="#fdf6e3"}
+
+
+##
+
+- Total variation is defined in the same way as quadratic variation but with the squared changes  replaced by the absolute values of the changes.   
+- In general, for continuous functions, finite total variation $\,\Rightarrow\,$ zero quadratic variation.
+- So, nonzero quadratic variation $\,\Rightarrow\,$ infinite total variation.
+- Brownian paths have infinite total variation (with probability 1).
+
+##
+
+- Infinite total variation means that if we were to straighten out a path of a Brownian motion to measure it, its length would be infinite.  
+
+- This is true no matter how small the time period over which we measure the path.
+
+
+
+# Martingales  {background-color="#657b83" color="#fdf6e3"}
+
+## 
+
+- A martingale is a stochastic process $M$ with the property that $\mathsf{E}_t[M_u]= M_t$ for each $t<u$.
+-  Equivalently, $\mathsf{E}_t[M_u-M_t] = 0$). 
+- A continuous martingale is a martingale for which all of the paths are continuous (with probability one).  
+- Every continuous martingale that is not constant has infinite total variation.
+
+## Levy's Theorem
+
+- A continuous martingale is a Brownian motion if and only if its quadratic variation over each interval $[s,u]$ equals $u-s$.
+- Thus, if a stochastic process has (i) continuous paths, (ii) conditionally mean-zero increments, and (iii) quadratic variation over each interval equal to the length of the interval, then its increments must also be 
+  - independent of conditioning information and 
+  - normally distributed.
+
+
+# Ito Integral  {background-color="#657b83" color="#fdf6e3"}
+
+## 
+
+- Suppose $\theta$ is a stochastic process that is 
+  - adapted to the information with respect to which $B$ is a Brownian motion, 
+  - jointly measurable in $(t,\omega)$, 
+  - and satisfies (with prob 1)
+
+. . .
+
+$$
+\int_0^T \theta_t^2\,\mathrm{d} t < \infty
+$$
+
+
+
+For eacht$, the stochastic integral can be approximated as (is a limit in probability of)
+$$
+\sum_{i=1}^N \theta_{t_{i-1}}(B_{t_i}-B_{t_{i-1}})
+$$
+given  discrete partitions
+$$0=t_0 < t_1 < t_2 < \cdots < t_N=t$$
+of the time interval $[0,t]$ with the maximum length $t_i-t_{i-1}$ of the time intervals going to zero as $N \rightarrow \infty$.   Note that\theta$ is evaluated in this sum at the beginning of each interval $[t_{i-1},t_i]$ over which the change inB$ is computed.
+
+- Let $M_0$ be a constant.
+then we can define the stochastic process
+$$
+M_t = M_0+\int_0^t \theta_s\,\mathrm{d} B_s
+$$
+for $t \in [0,T]$.  This is called an Ito integral \index{Ito integral} or stochastic integral.
+
+
+
+## Approximating Stochastic Integrals
+
+## Differential Form
+
+Given 
+$$
+M_t = M_0+\int_0^t \theta_s\,\mathrm{d} B_s
+$$
+ we write
+$$
+\mathrm{d} M_t = \theta_t\,\mathrm{d} B_t
+$$ or, more simply, 
+$$\mathrm{d} M = \theta\,\mathrm{d} B$$ 
+We can define $M$ from the formula $\mathrm{d} M = \theta\,\mathrm{d} B$ and the initial condition $M_0$  by ``summing'' the changes $\mathrm{d} M$ as
+$$M_t = M_0 + \int_0^t \mathrm{d} M_s =  M_0+\int_0^t \theta_s\,\mathrm{d} B_s\,.$$
+
+
+
+
+## Ito Process
+
+The sum of an ordinary integral and a stochastic integral is called an Ito process. \index{Ito process} Such a process has the form
+$$
+Y_t = Y_0 + \int_0^t \alpha_s\,\mathrm{d} s + \int_0^t \theta_s\,\mathrm{d} B_s\,,
+$$
+which is also written as
+$$
+\mathrm{d} Y_t = \alpha_t\,\mathrm{d} t + \theta_t\,\mathrm{d} B_t
+$$
+or, more simply, as $$\mathrm{d} Y = \alpha\,\mathrm{d} t+ \theta\,\mathrm{d} B$$
+We recover $Y$ from this differential form by ``summing'' the changes $\mathrm{d} Y$ over time.
+The process\alpha$ is called the \alert{drift} ofY$.
+
+
+# Returns  {background-color="#657b83" color="#fdf6e3"}
+
+## Asset Return
+
+- Suppose that between dividend payments the priceS$ of an asset satisfies
+$$
+\frac{\mathrm{d} S}{S} = \mu\,\mathrm{d} t + \sigma\,\mathrm{d} B
+$$
+for a Brownian motionB$ and stochastic processes (or constants)\mu$ and\sigma$.  
+- We interpret $\mathrm{d} S/S$ as the instantaneous rate of return of the asset and $\mu\,\mathrm{d} t$ as the expected rate of return.  
+- The equation for $S$ can be written equivalently as $\mathrm{d} S = S\mu\,\mathrm{d} t + S\sigma\,\mathrm{d} B$.  
+- The real meaning is the ``summed'' version:
+$$ S_u = S_0 + \int_0^u S_t\mu_t\,\mathrm{d} t + \int_0^u S_t\sigma_t\,\mathrm{d} B_t
+$$
+
+
+
+## Money Market Account
+
+- Suppose there is an asset that is locally risk-free, \index{locally risk-free asset} meaning that its priceR$ satisfies
+$$
+\frac{\mathrm{d} R}{R} = r\,\mathrm{d} t
+$$
+for somer$ (which can be a stochastic process).  
+- This equation for $R$ can be solved explicitly as
+$$R_u = R_0\exp\left(\int_0^u r_t\,\mathrm{d} t\right)\,.$$
+- 
+We interpret $r_t$ as the interest rate at datet$ for an investment during the infinitesimal period $(t,t+\mathrm{d} t)$.  
+- If the interest rate is constant, then
+$R_u=R_0\E^{ru}$, 
+meaning that interest is continuously compounded at the constant rater$.  
+- We callr$ the instantaneous risk-free rate or the locally risk-free rate \index{locally risk-free rate}or the short rate.
+
+
+
+
+
+## Portfolio Return
+
+- A portfolio of the asset with price $S$ (the risky asset) and the money market account is defined by the fraction $\pi_t$ of wealth invested in the risky asset at each datet$.  
+- If no funds are invested or withdrawn from the portfolio during a time period $[0,T]$ and the asset does not pay dividends during the period, then  the wealth
+processW$ satisfies
+$$
+\frac{\mathrm{d} W}{W} = (1-\pi)r\,\mathrm{d} t + \pi \frac{\mathrm{d} S}{S}
+$$
+- This is called the intertemporal budget constraint.  It states that wealth grows only from interest earned and from the return on the risky asset.
+
+
+
+
+## Intertemporal Budget Constraint
+
+The intertemporal budget constraint with no labor income and no consumption is
+\begin{align*}
+\frac{\mathrm{d} W}{W} &= (1-\pi)r\,\mathrm{d} t + \pi \frac{\mathrm{d} S}{S}\\
+&= (1-\pi)r\,\mathrm{d} t + \pi \mu\,\mathrm{d} t + \pi\sigma\,\mathrm{d} B\\
+&= r\,\mathrm{d} t + \pi(\mu-r)\,\mathrm{d} t + \pi\sigma\,\mathrm{d} B
+\end{align*}
+We can also write it as
+$$
+\mathrm{d} W = rW\,\mathrm{d} t + \pi(\mu-r)W\,\mathrm{d} t + \pi\sigma W\,\mathrm{d} B
+$$
+With labor income $Y$ and consumption $C$ (both as rate per unit time), it is
+$$
+\mathrm{d} W = rW\,\mathrm{d} t + \pi(\mu-r)W\,\mathrm{d} t + \pi\sigma W\,\mathrm{d} B + Y\,\mathrm{d} t - C\,\mathrm{d} t
+$$
+
+
+# Ito's Formula {background-color="#657b83" color="#fdf6e3"}
+
+## Notation for Quadratic Variation
+
+- Convenient notation:  $(\mathrm{d} B)^2 = \mathrm{d} t$.
+- The motivation comes from quadratic variation.  Consider discrete partitions
+$$s=t_0 < t_1 < t_2 < \cdots < t_N=u$$
+of a time interval $[s,u]$.  
+- With $N \rightarrow \infty$ and the maximum length $t_i-t_{i-1}$ of the time intervals  going to zero, 
+\begin{align*}
+\sum_{i=1}^N (B_{t_i}-B_{t_{i-1}})^2  & = \sum_{i=1}^N (\Delta B)^2\\
+\rightarrow \int_s^u (\mathrm{d} B)^2
+= \int_s^u \mathrm{d} t = u-s
+\end{align*}
+
+
+
+## Quadratic Variation of a Stochastic Integral
+
+The quadratic variation of a stochastic integral $\mathrm{d} M_t = \theta_t\,\mathrm{d} B_t$
+
+over an interval $[s,u]$ is
+$$\int_s^u (\mathrm{d} M_t)^2 = \int_s^u (\theta_t\,\mathrm{d} B_t)^2 = \int_s^u (\theta_t)^2 (\mathrm{d} B_t)^2 = \int_s^u \theta_t^2\,\mathrm{d} t$$
+
+
+
+## Quadratic Variation of an Ito Process
+
+- More convenient notation: $(\mathrm{d} t)^2 = 0$, $(\mathrm{d} B)(\mathrm{d} t) = 0$.  
+- The motivation for $(\mathrm{d} t)^2=0$ is that the quadratic variation of a continuously differentiable function of time is zero.
+- The quadratic variation of an Ito process $\mathrm{d} X_t = \alpha_t\,\mathrm{d} t + \theta_t\,\mathrm{d} B_t$ 
+over an interval $[s,u]$ is
+$$\int_s^u (\mathrm{d} X_t)^2 = \int_s^u (\alpha_t\,\mathrm{d} t + \theta_t\,\mathrm{d} B_t)^2 = \int_s^u (\theta_t)^2 (\mathrm{d} B_t)^2 = \int_s^u \theta_t^2\,\mathrm{d} t$$
+
+
+
+
+
+
+## Chain Rule of Ordinary Calculus
+
+
+- Define $y=f(x)$ for some continuously differentiable functionf$, so 
+$$
+\mathrm{d} y = f'(x)\,\mathrm{d} x$$
+- Now let $x$ be a nonrandom continuously differentiable function of time and define $y_t=f(x_t)$.  The chain rule gives us
+$$\frac{\mathrm{d} y_t}{\mathrm{d} t} = f'(x_t)\frac{\mathrm{d} x_t}{\mathrm{d} t} \quad \Leftrightarrow \quad \mathrm{d} y_t = f'(x_t)\,\mathrm{d} x_t$$
+- 
+The fundamental theorem of calculus states that we can ``sum'' the changes over an interval $[0,t]$ to obtain
+$$
+y_t = y_0 + \int_0^t f'(x_s)\,\mathrm{d} x_s\,.
+$$
+Of course, we can  substitute $\mathrm{d} x_s = x'_s\,\mathrm{d} s$ in this integral.
+
+
+
+
+## Chain Rule from Multivariate Calculus
+
+- Define $y=f(t,x)$, so
+$$\mathrm{d} y = \frac{\partial f}{\partial t}\,\mathrm{d} t + \frac{\partial f}{\partial x}\,\mathrm{d} x$$
+- Now let $x$ be a nonrandom continuously differentiable function of time and define $y_t=f(t,x_t)$.  The chain rule gives us
+$$\frac{\mathrm{d} y}{\mathrm{d} t} = \frac{\partial f}{\partial t} + \frac{\partial f}{\partial x}\,\frac{\mathrm{d} x}{\mathrm{d} t} \quad \Leftrightarrow \quad \mathrm{d} y_t = \frac{\partial f}{\partial t}\,\mathrm{d} t + \frac{\partial f}{\partial x}\,\mathrm{d} x_t$$
+- 
+This implies
+$$
+y_t = y_0 + \int_0^t  \frac{\partial f(s,x_s)}{\partial s}\,\mathrm{d} s + \int_0^t  \frac{\partial f(s,x_s)}{\partial x}\,\mathrm{d} x_s
+$$
+Of course, we can  substitute $\mathrm{d} x_s = x'_s\,\mathrm{d} s$ in this integral.
+
+
+
+
+## Ito's Formula
+
+-  Let $f(t,x)$ be continuously differentiable int$ and twice continuously differentiable inx$.  
+- Define $Y_t = f(t,B_t)$ for a Brownian motionB$.
+-  
+Ito's formula states that
+$$
+\mathrm{d} Y = \frac{\partial f}{\partial t}\,\mathrm{d} t + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}\,\mathrm{d} t +\frac{\partial f}{\partial B}\,\mathrm{d} B 
+$$
+- Thus, $Y$ is an Ito process with
+$$\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}$$
+as its drift and
+$(\partial f/\partial B)\,\mathrm{d} B$ as its stochastic part.  
+- Ito's formula means that, for eacht$,
+$$
+Y_t = Y_0+\int_0^t \left(\frac{\partial f(s,B_s)}{\partial s}+ \frac{1}{2}\frac{\partial^2 f(s,B_s)}{\partial B^2}\right)\,\mathrm{d} s + \int_0^t \frac{\partial f(s,B_s)}{\partial B}\,\mathrm{d} B_s
+$$
+
+
+
+## 
+
+-  Recall our notation $(\mathrm{d} B)^2 = \mathrm{d} t$.
+- In terms of this notation, Ito's formula is
+$$
+\mathrm{d} Y = \frac{\partial f}{\partial t}\,\mathrm{d} t +\frac{\partial f}{\partial B}\,\mathrm{d} B + \frac{1}{2}\frac{\partial^2 f}{\partial B^2}\,(\mathrm{d} B)^2
+$$
+
+
+
+
+## Example of Ito's Formula
+
+-  Let $Y_t=B_t^2$, so $Y_t = f(B_t)$ where $f(x)=x^2$.  
+- Apply Ito's formula.  Using the notation $(\mathrm{d} B)^2= \mathrm{d} t$, we have
+\begin{align*}
+\mathrm{d} Y &= f'(B_t)\,\mathrm{d} B + \frac{1}{2}f''(B_t)\,(\mathrm{d} B)^2 \notag\\
+&= 2 B_t\,\mathrm{d} B_t + (\mathrm{d} B)^2
+\end{align*}
+- Compare this to discrete changes. Consider the increment $\Delta Y = Y_u-Y_s$ over an interval $[s,u]$.  Set $\Delta B = B_u-B_s$.
+- We have
+\begin{align*}
+\Delta Y &= B_u^2 - B_s^2\notag\\
+&= [B_s + \Delta B]^2 - B_s^2\notag\\
+&= 2 B_s\Delta B + (\Delta B)^2
+\end{align*}
+
+
+
+
+## Ito's Formula for Functions of Ito Processes
+
+-  Let $X$ be an Ito process: $\mathrm{d} X = \alpha\,\mathrm{d} t + \theta\,\mathrm{d} B$.
+- Recall our notation: $(\mathrm{d} t)^2=0$, $(\mathrm{d} t)(\mathrm{d} B) = 0$, $(\mathrm{d} B)^2 = \mathrm{d} t$.  
+- Recall
+$$(\mathrm{d} X)^2 = (\alpha\,\mathrm{d} t + \theta\,\mathrm{d} B)^2 = \theta^2\,\mathrm{d} t$$
+- Let $f(t,x)$ be continuously differentiable int$ and twice continuously differentiable inx$.  
+- Define $Y_t = f(t,X_t)$.
+- Ito's formula is:
+\begin{align*}
+\mathrm{d} Y &=  \frac{\partial f}{\partial t}\,\mathrm{d} t +\frac{\partial f}{\partial X}\,\mathrm{d} X + \frac{1}{2}\frac{\partial^2 f}{\partial X^2}\,(\mathrm{d} X)^2\\
+&=\frac{\partial f}{\partial t}\,\mathrm{d} t +\frac{\partial f}{\partial X}(\alpha\,\mathrm{d} t + \theta\,\mathrm{d} B) + \frac{1}{2}\frac{\partial^2 f}{\partial X^2}\theta^2\,\mathrm{d} t
+\end{align*}
+
+
+
+# Geometric Brownian {background-color="#657b83" color="#fdf6e3"}
+
+## Geometric Brownian Motion
+
+-  Suppose, for constants $\mu$ and $\sigma$, that
+$$\frac{\mathrm{d} S}{S}=\mu\,\mathrm{d} t+\sigma\,\mathrm{d} B$$
+- We will solve this like we solved for the price of the money market account.  
+- Define $Y_t = \log S_t$.  The process $S$ is an Ito process, so we can apply Ito's formula to $Y$ to obtain
+\begin{align*}
+\mathrm{d} \log S &= \frac{1}{S}\,\mathrm{d} S + \frac{1}{2}\cdot \left(-\frac{1}{S^2}\right)(\mathrm{d} S)^2\\
+&= \mu\,\mathrm{d} t + \sigma\,\mathrm{d} B - \frac{1}{2}\sigma^2\,\mathrm{d} t
+\end{align*}
+
+
+
+## 
+
+- Summing the changes gives
+$$\log S_t = \log S_0 + \left(\mu - \frac{1}{2}\sigma^2\right)t + \sigma B_t$$
+- Exponentiating both sides gives
+$$S_t = S_0 \E^{\mu t - \sigma^2t/2 + \sigma B_t}$$
+- This is the solution of the equation
+$$\frac{\mathrm{d} S}{S}=\mu\,\mathrm{d} t+\sigma\,\mathrm{d} B$$
+
+
+
+# Multivariate {background-color="#657b83" color="#fdf6e3"}
+
+## Covariation (Joint Variation)
+
+-  Consider a  discrete partition
+$s=t_0 < t_1 < t_2 < \cdots < t_N=u$
+of a time interval $[s,u]$.
+- For any two functions of timex$ andy$, consider the sum of products of changes
+$$\sum_{i=1}^N \Delta x_{t_i}\Delta y_{t_i}\,,$$
+where $\Delta x_{t_i} = x_{t_i}-x_{t_{i-1}}$ and $\Delta y_{t_i} = y_{t_i}-y_{t_{i-1}}$.
+- The covariation (or joint variation)  ofx$ andy$ on the interval $[s,u]$ is defined as the limit of this sum as $N \rightarrow \infty$ and the lengths $t_i-t_{i-1}$ of the intervals  go to zero.  
+- If $x=y$, then this is the same as the quadratic variation.  
+- If both functions are continuous and one is continuously differentiable, then the covariation is zero.
+
+
+
+
+## Covariation of Brownian Motions
+
+-  If $B_1$ and $B_2$ are Brownian motions, then there is a process $\rho$ with $|\rho_t|\leq 1$ for all $t$, such that, with probability 1, the covariation of the paths of $B_1$ and $B_2$ over any interval $[s,u]$ equals
+$$\int_s^u \rho_t\,\mathrm{d} t$$
+- The Brownian motions are independent if and only if $\rho \equiv 0$. 
+- We write $(\mathrm{d} B_1)(\mathrm{d} B_2) = \rho\,\mathrm{d} t$.
+- Then we can ``calculate'' the covariation as the sum of products of changes:
+$$\int_s^u (\mathrm{d} B_{1t})(\mathrm{d} B_{2t})$$
+
+
+
+
+
+
+
+## Covariation of Ito Processes
+
+-  Consider two Ito processes $\mathrm{d} X_i = \alpha_i\,\mathrm{d} t + \theta_i\,\mathrm{d} B_i$.  
+- The covariation of $X_1$ and $X_2$ over any interval $[s,u]$ is
+$$\int_s^u (\mathrm{d} X_{1t})\,(\mathrm{d} X_{2t})$$
+- Here,
+\begin{align*}
+(\mathrm{d} X_{1t})\,(\mathrm{d} X_{2t}) &= (\alpha_{1t}\,\mathrm{d} t + \theta_{1t}\,\mathrm{d} B_{1t})(\alpha_{2t}\,\mathrm{d} t + \theta_{2t}\,\mathrm{d} B_{1t})\\
+&= \theta_{1t}\theta_{2t}(\mathrm{d} B_{1t})(\mathrm{d} B_{2t})\\
+& = \theta_{1t}\theta_{2t}\rho_t\,\mathrm{d} t
+\end{align*}
+where $\rho$ is the correlation process of the two Brownian motions.
+- We also call $\rho$ the correlation process of the two Ito processes.
+
+
+
+
+## General Ito's Formula
+
+-  Consider $n$ Ito processes $\mathrm{d} X_i = \alpha_i\,\mathrm{d} t + \theta_i\,\mathrm{d} B_i$.
+- Suppose $(t,x) \mapsto f(t,x):[0,\infty) \times \mathbb{R}^n \rightarrow \mathbb{R}$ is continuously differentiable in $t$ and twice continuously differentiable in $x$.
+- Define $Y_t = f(t,X_{1t}, \ldots, X_{nt})$.
+- Then
+$$\mathrm{d} Y = \frac{\partial f}{\partial t}\,\mathrm{d} t + \sum_{i=1}^n \frac{\partial f}{\partial X_i}\,\mathrm{d} X_i + \frac{1}{2}\sum_{i=1}^n \sum_{j=1}^n \frac{\partial^2 f}{\partial X_i \partial X_j}\,(\mathrm{d} X_i)\,(\mathrm{d} X_j)$$
+- For example, if $n=2$, then
+\begin{multline*}
+\mathrm{d} Y = \frac{\partial f}{\partial t}\,\mathrm{d} t + \frac{\partial f}{\partial X_1}\,\mathrm{d} X_1 + \frac{\partial f}{\partial X_2}\,\mathrm{d} X_2 \\+ \frac{1}{2}\frac{\partial^2 f}{\partial X_1^2 }\,(\mathrm{d} X_1)^2 + \frac{1}{2}\frac{\partial^2 f}{\partial X_2^2 }\,(\mathrm{d} X_2)^2 + \frac{\partial^2 f}{\partial X_1 \partial X_2}\,(\mathrm{d} X_1)\,(\mathrm{d} X_2)
+\end{multline*}
+
+
+
+
+## Product Rule (Integration by Parts)
+
+-  Suppose $X_1$ and $X_2$ are It processes and $Y_t = X_{1t}X_{2t}$.
+- To calculate $\mathrm{d} Y$, we apply Ito's formula with $n=2$ and $f(t,x_1,x_2) = x_1x_2$.
+- We obtain
+$$\mathrm{d} Y = X_1\,\mathrm{d} X_2 + X_2\,\mathrm{d} X_1 + (\mathrm{d} X_1)(\mathrm{d} X_2)$$
+
