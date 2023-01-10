@@ -91,7 +91,7 @@ $$\sum_{i=1}^n f(z_i)[G(s_i)-G(s_{i-1})]$$
 
 - The name "Brownian motion" stems from the  observations by the botanist Robert Brown of the erratic behavior of particles suspended in a fluid.  
 
-# Information  {background-color="#657b83" color="#fdf6e3"}
+# Quadratic Variation  {background-color="#657b83" color="#fdf6e3"}
 
 ##
 
