@@ -95,12 +95,17 @@ $$\sum_{i=1}^n f(z_i)[G(s_i)-G(s_{i-1})]$$
 
 ##
 
-- Let $B$ be a Brownian motion.  Consider a  discrete partition
+- Let $B$ be a Brownian motion.  Given a time interval $[s,u]$ and partition
+
+. . .
+
 $$s=t_0 < t_1 < t_2 < \cdots < t_N=u$$
-of a time interval $[s,u]$.
-- Consider the sum of squared changes
+
+- consider, in a given state of the world, the sum of squared changes
+
+. . .
+
 $$\sum_{i=1}^N (B_{t_i}-B_{t_{i-1}})^2$$
-in some state of the world.
 
 
 ##
@@ -631,13 +636,13 @@ $$+ \frac{\partial^2 f}{\partial X_1 \partial X_2}\,(\mathrm{d} X_1)\,(\mathrm{d
 
 
 
-
 ## Product Rule (Integration by Parts)
 
--  Suppose $X_1$ and $X_2$ are It processes and $Y_t = X_{1t}X_{2t}$.
+-  Suppose $X_1$ and $X_2$ are Ito processes and $Y_t = X_{1t}X_{2t}$.
 - To calculate $\mathrm{d} Y$, we apply Ito's formula with $n=2$ and $f(t,x_1,x_2) = x_1x_2$.
 - We obtain
 
 . . .
+
 $$\mathrm{d} Y = X_1\,\mathrm{d} X_2 + X_2\,\mathrm{d} X_1 + (\mathrm{d} X_1)(\mathrm{d} X_2)$$
 
